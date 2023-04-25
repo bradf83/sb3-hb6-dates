@@ -25,38 +25,19 @@ public class Companies {
         return this.companyRepository.findAll();
     }
 
+    // Get should not be creating data, just something quick and dirty.
     @GetMapping("/create")
     public String create() {
 
         Instant now = Instant.now();
 
-        Company comp = new Company();
-        comp.setName("Test" + now);
-        comp.setCreationDate(now);
-        comp.setCreationDateTz(now);
+        Company company = new Company();
+        company.setName("Test" + now);
+        company.setCreationDate(now);
+        company.setCreationDateTz(now);
 
-        this.companyRepository.save(comp);
+        this.companyRepository.save(company);
 
         return "Created";
     }
-
-    /**
-     * System Time
-     * {
-     * "name": "Test2023-04-25T01:16:36.385523300Z",
-     * "creationDate": "2023-04-24T19:16:36.385523Z",
-     * "creationDateTz": "2023-04-25T01:16:36.385523Z"
-     * }
-     * 
-     * Setting TimeZone.default to UTC on Startup in Application.java (DOES NOT SEEM
-     * TO WORK ANYMORE)
-     * "name": "Test2023-04-25T01:21:48.072176100Z",
-     * "creationDate": "2023-04-24T19:21:48.072176Z",
-     * "creationDateTz": "2023-04-25T01:21:48.072176Z"
-     * 
-     * Setting Time Zone for the app using a JVM Argument
-     * "name": "Test2023-04-25T01:42:13.717011600Z",
-     * "creationDate": "2023-04-25T01:42:13.717012Z",
-     * "creationDateTz": "2023-04-25T01:42:13.717012Z"
-     */
 }
